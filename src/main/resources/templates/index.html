@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/LayoutPadrao}">
+
+<head>
+    <title>Pizzaria</title>
+</head>
+
+<section class="content" layout:fragment="conteudo">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>DASHBOARD</h2>
+        </div>
+
+        <!-- Widgets -->
+        <div class="row clearfix">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-pink hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">playlist_add_check</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">TOTAL DE PRODUTOS</div>
+                        <div class="number count-to" data-from="0" th:attr="data-to=${produtos.size()}"
+                             data-speed="15"
+                             data-fresh-interval="20"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-cyan hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">help</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">TOTAL DE MESAS</div>
+                        <div class="number count-to" data-from="0" th:attr="data-to=${mesas.size()}" data-speed="1000"
+                             data-fresh-interval="20"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-light-green hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">monetization_on</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">VENDAS DO DIA</div>
+                        <div class="number js-valor-formatado">[[${{vendasNoDia}}]]</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-orange hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">person_add</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">TOTAL DE FORNECEDORES</div>
+                        <div class="number count-to" data-from="0" th:attr="data-to=${fornecedores.size()}"
+                             data-speed="1000"
+                             data-fresh-interval="20"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <!-- Task Info -->
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="card">
+                    <div class="header">
+                        <h2>ÚLTIMOS SEIS MESES</h2>
+                    </div>
+                    <div class="body">
+                        <canvas id="graficoPorMes" height="150"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Task Info -->
+        </div>
+
+    </div>
+</section>
+<th:block layout:fragment="javascript-extra">
+    <script>
+        var valor = $('.js-valor-formatado').text();
+        $('.js-valor-formatado').html('R$ ' + Pizzaria.formatarMoeda(parseFloat(valor)));
+    </script>
+    <script th:src="@{/plugins/chartjs/Chart.min.js}"></script>
+    <script th:src="@{/js/dashboard.js}"></script>
+</th:block>
+</html>
