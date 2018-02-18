@@ -1,66 +1,64 @@
 package com.pizzaria.model;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.*;
 import java.time.LocalDate;
 
-/**
- * Created by lucasbarros on 25/07/2017.
- */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(length = 60)
-    private String nome;
-
-    @CPF(message = "CPF inválido")
-    @NotBlank(message = "CPF deve ser informado")
-    @Column(length = 14)
-    private String cpf;
-
-    @NotBlank(message = "Senha obrigatória")
-    @Column(length = 100)
+    
     private String senha;
-
-    @NotBlank(message = "Confirme a senha")
-    @Column(length = 100)
-    private String confirmeSenha;
-
-    @Column(length = 20)
+    
+    @Column(name = "confirmar_senhar")
+    private String confirmarSenha;
+    
+    private String cpf;
+    
+    @Column(name = "data_de_nascimento")
+    private LocalDate dataDeNascimento;
+    
+    private String email;
+    
+    private String bairro;
+    
+    private String cep;
+    
+    private String cidade;
+    
+    private String complemento;
+    
+    private String endereco;
+    
+    private String estado;
+    
+    private String nome;
+    
     private String telefone;
 
-    @Email(message = "E-mail inválido")
-    @Column(length = 60)
-    private String email;
-
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Column(name = "data_nascimento")
-    private LocalDate dataDeNascimento;
-
-    public Long getId() {
-        return id;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public String getNome() {
-        return nome;
+    public String getConfirmarSenha() {
+        return confirmarSenha;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setConfirmarSenha(String confirmarSenha) {
+        this.confirmarSenha = confirmarSenha;
     }
 
     public String getCpf() {
@@ -71,28 +69,12 @@ public class Usuario {
         this.cpf = cpf;
     }
 
-    public String getSenha() {
-        return senha;
+    public LocalDate getDataDeNascimento() {
+        return dataDeNascimento;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getConfirmeSenha() {
-        return confirmeSenha;
-    }
-
-    public void setConfirmeSenha(String confirmeSenha) {
-        this.confirmeSenha = confirmeSenha;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setDataDeNascimento(LocalDate dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
     }
 
     public String getEmail() {
@@ -103,26 +85,68 @@ public class Usuario {
         this.email = email;
     }
 
-    public LocalDate getDataDeNascimento() {
-        return dataDeNascimento;
+    public String getBairro() {
+        return bairro;
     }
 
-    public void setDataDeNascimento(LocalDate dataDeNascimento) {
-        this.dataDeNascimento = dataDeNascimento;
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", senha='" + senha + '\'' +
-                ", confirmeSenha='" + confirmeSenha + '\'' +
-                ", telefone='" + telefone + '\'' +
-                ", email='" + email + '\'' +
-                ", dataDeNascimento=" + dataDeNascimento +
-                '}';
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
 }
